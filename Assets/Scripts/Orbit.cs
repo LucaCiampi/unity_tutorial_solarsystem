@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AutoRotate : MonoBehaviour
+public class Orbit : MonoBehaviour
 {
-    public float speed = 1f;
+    public PlanetOrbitPreset preset;
+    [Tooltip("Child planet to move")]
+    public GameObject planet;
     
     // Start is called before the first frame update
     void Start()
@@ -16,6 +18,7 @@ public class AutoRotate : MonoBehaviour
     void Update()
     {
         this.Rotate();
+        this.SetPlanetDistance();
     }
 
     /**
@@ -25,10 +28,18 @@ public class AutoRotate : MonoBehaviour
     {
         float _dt = Time.deltaTime;
         
-        float _angle = this.speed * _dt;
+        float _angle = this.preset.orbitalSpeed * _dt;
 
         if (GameController.Instance) _angle *= GameController.Instance.speed;
 
         this.transform.Rotate(Vector3.up, _angle, Space.Self);
+    }
+    
+    /**
+     * Sets the planet a certain distance from the sun
+     */
+    private void SetPlanetDistance()
+    {
+        this.planet.transform.localPosition = new Vector3(0, 0, this.preset.orbitRadius);
     }
 }
