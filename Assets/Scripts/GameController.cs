@@ -18,11 +18,23 @@ public class GameController : MonoBehaviour
         }
     }
     
-    [Range(-20, 20)] 
-    public float speed = 1f;
 
     private float _previousSpeed;
-    
+
+    public delegate void SpeedEvent(float newSpeed);
+    public event SpeedEvent OnSpeedChanged;
+    private float _speed = 1;
+
+    public float speed
+    {
+        get => this._speed;
+        set
+        {
+            if (this.OnSpeedChanged != null && value != this._speed) this.OnSpeedChanged.Invoke(this._speed);
+            this._speed = value;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

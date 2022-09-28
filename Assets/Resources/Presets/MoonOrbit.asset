@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: MoonOrbit
   m_EditorClassIdentifier: 
   orbitalSpeed: 100
-  orbitRadius: 166
+  orbitRadius: 10

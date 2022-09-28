@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EarthOrbit
   m_EditorClassIdentifier: 
   orbitalSpeed: 10
-  orbitRadius: 2000
+  orbitRadius: 150
